@@ -415,7 +415,8 @@ public class UserInfoEndpoint {
         if (accessToken != null) {
             if (authorization == null) {
                 authorization = accessToken;
-            } else {
+            } else if (!authorization.equals(accessToken)){
+                // PG Note: Only throw here if the two given tokens are different.
                 throw error.cors(cors.allowAllOrigins()).invalidRequest("More than one method used for including an access token");
             }
         }
