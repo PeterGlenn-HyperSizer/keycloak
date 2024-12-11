@@ -361,7 +361,7 @@ public class UserInfoEndpoint {
         if (accessToken != null) {
             if (tokenForUserInfo.getToken() == null) {
                 tokenForUserInfo.setToken(accessToken);
-            } else {
+            } else if (tokenForUserInfo.getToken() != accessToken) {
                 throw error.cors(cors.allowAllOrigins()).invalidRequest("More than one method used for including an access token");
             }
         }
